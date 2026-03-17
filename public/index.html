@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="theme-color" content="#f4e8c8" />
+        <title>Wiselife Little Library Kiosk</title>
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="stylesheet" href="/styles.css" />
+    </head>
+    <body class="kiosk-body">
+        <div class="ambient ambient-1" aria-hidden="true"></div>
+        <div class="ambient ambient-2" aria-hidden="true"></div>
+
+        <main class="layout">
+            <header class="hero reveal">
+                <p class="hero-kicker">Wiselife Global Lahore</p>
+                <h1>Little Library of Light</h1>
+                <p class="hero-subtitle">
+                    Book circulation for the khanqah: donate, issue, return, and review in one offline-first kiosk.
+                </p>
+                <div class="hero-actions">
+                    <button class="ghost-btn" id="refreshBooksBtn" type="button">Refresh Shelf</button>
+                    <a class="ghost-btn" href="/admin.html">Open Admin Dashboard</a>
+                </div>
+            </header>
+
+            <section class="panel reveal" aria-label="Kiosk actions">
+                <div class="tab-row" role="tablist" aria-label="Library actions">
+                    <button class="tab-btn active" type="button" data-tab="issue">Issue</button>
+                    <button class="tab-btn" type="button" data-tab="giveaway">Give Away</button>
+                    <button class="tab-btn" type="button" data-tab="review">Rate / Review</button>
+                    <button class="tab-btn" type="button" data-tab="return">Return</button>
+                </div>
+
+                <div class="tab-content active" id="issue" role="tabpanel">
+                    <h2>Issue a Book</h2>
+                    <form id="issueForm" class="form-grid">
+                        <label>
+                            Reader Name
+                            <input name="user_name" required maxlength="80" placeholder="Enter full name" />
+                        </label>
+                        <label>
+                            Select Book
+                            <select name="book_id" required id="issueBookSelect"></select>
+                        </label>
+                        <button type="submit" class="primary-btn">Issue Book</button>
+                    </form>
+                </div>
+
+                <div class="tab-content" id="giveaway" role="tabpanel">
+                    <h2>Give Away a Book</h2>
+                    <form id="giveawayForm" class="form-grid">
+                        <label>
+                            Book Title
+                            <input name="title" required maxlength="160" placeholder="Book title" />
+                        </label>
+                        <label>
+                            Author
+                            <input name="author" required maxlength="120" placeholder="Author name" />
+                        </label>
+                        <label>
+                            Category
+                            <input name="category" maxlength="80" placeholder="Faith, history, literature..." />
+                        </label>
+                        <label>
+                            Donor Name
+                            <input name="user_name" maxlength="80" placeholder="Optional" />
+                        </label>
+                        <button type="submit" class="primary-btn">Add to Library</button>
+                    </form>
+                </div>
+
+                <div class="tab-content" id="review" role="tabpanel">
+                    <h2>Rate and Review</h2>
+                    <form id="reviewForm" class="form-grid">
+                        <label>
+                            Your Name
+                            <input name="user_name" maxlength="80" placeholder="Optional" />
+                        </label>
+                        <label>
+                            Book
+                            <select name="book_id" required id="reviewBookSelect"></select>
+                        </label>
+                        <label>
+                            Rating (1-5)
+                            <input name="rating" type="number" min="1" max="5" required />
+                        </label>
+                        <label>
+                            Comment
+                            <textarea name="comment" rows="3" maxlength="400" placeholder="Share your thoughts"></textarea>
+                        </label>
+                        <button type="submit" class="primary-btn">Submit Review</button>
+                    </form>
+                </div>
+
+                <div class="tab-content" id="return" role="tabpanel">
+                    <h2>Return a Book</h2>
+                    <form id="returnForm" class="form-grid">
+                        <label>
+                            Reader Name (optional)
+                            <input name="user_name" maxlength="80" placeholder="Optional" />
+                        </label>
+                        <label>
+                            Issued Book
+                            <select name="book_id" required id="returnBookSelect"></select>
+                        </label>
+                        <button type="submit" class="primary-btn">Mark as Returned</button>
+                    </form>
+                </div>
+
+                <p id="statusMessage" class="status" aria-live="polite"></p>
+            </section>
+
+            <section class="panel reveal" aria-label="Library shelf">
+                <div class="shelf-header">
+                    <h2>Library Shelf</h2>
+                    <input id="searchInput" placeholder="Search by title, author, category" />
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Title</th>
+                                <th>Author</th>
+                                <th>Category</th>
+                                <th>Status</th>
+                                <th>Rating</th>
+                            </tr>
+                        </thead>
+                        <tbody id="booksTableBody"></tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+
+        <script src="/app.js" defer></script>
+    </body>
+</html>

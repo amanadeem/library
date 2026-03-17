@@ -1,0 +1,10 @@
+{
+    "name": "Wiselife Little Library",
+    "short_name": "Wiselife Library",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "background_color": "#f8f3e6",
+    "theme_color": "#f4e8c8",
+    "description": "Offline-first kiosk app for Wiselife khanqah little library",
+    "icons": []
+}

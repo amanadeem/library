@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Wiselife Library Admin</title>
+        <link rel="stylesheet" href="/styles.css" />
+    </head>
+    <body class="admin-body">
+        <div class="ambient ambient-1" aria-hidden="true"></div>
+        <main class="layout admin-layout">
+            <header class="hero reveal">
+                <p class="hero-kicker">Management Console</p>
+                <h1>Library Analytics Dashboard</h1>
+                <p class="hero-subtitle">Offline-ready reporting for the khanqah library operations.</p>
+                <div class="hero-actions">
+                    <button id="refreshAdminBtn" class="ghost-btn" type="button">Refresh Analytics</button>
+                    <a class="ghost-btn" href="/index.html">Back to Kiosk</a>
+                </div>
+            </header>
+
+            <section class="metric-grid reveal" aria-label="Summary metrics">
+                <article class="metric-card"><h3>Total Books</h3><p id="mTotalBooks">0</p></article>
+                <article class="metric-card"><h3>Available</h3><p id="mAvailableBooks">0</p></article>
+                <article class="metric-card"><h3>Issued</h3><p id="mIssuedBooks">0</p></article>
+                <article class="metric-card"><h3>Total Issues</h3><p id="mTotalIssues">0</p></article>
+                <article class="metric-card"><h3>Total Donations</h3><p id="mTotalDonations">0</p></article>
+                <article class="metric-card"><h3>Average Rating</h3><p id="mAvgRating">0</p></article>
+            </section>
+
+            <section class="panel reveal" aria-label="Add book from admin">
+                <h2>Add Book (Admin)</h2>
+                <form id="adminAddBookForm" class="form-grid">
+                    <label>
+                        Book Title
+                        <input name="title" required maxlength="160" placeholder="Book title" />
+                    </label>
+                    <label>
+                        Author
+                        <input name="author" required maxlength="120" placeholder="Author name" />
+                    </label>
+                    <label>
+                        Category
+                        <input name="category" maxlength="80" placeholder="Faith, history, literature..." />
+                    </label>
+                    <label>
+                        Added By
+                        <input name="user_name" maxlength="80" placeholder="Admin name" />
+                    </label>
+                    <button class="primary-btn" type="submit">Add Book to Inventory</button>
+                </form>
+            </section>
+
+            <section class="panel reveal" aria-label="Top rated books">
+                <h2>Top Rated Books</h2>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Book</th>
+                                <th>Author</th>
+                                <th>Avg Rating</th>
+                                <th>Reviews</th>
+                            </tr>
+                        </thead>
+                        <tbody id="topRatedBody"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="panel reveal" aria-label="Inventory">
+                <h2>Inventory Overview</h2>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Title</th>
+                                <th>Author</th>
+                                <th>Category</th>
+                                <th>Status</th>
+                                <th>Issued To</th>
+                                <th>Rating</th>
+                            </tr>
+                        </thead>
+                        <tbody id="inventoryBody"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="panel reveal" aria-label="Activity and trend">
+                <h2>Recent Activity</h2>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>Action</th>
+                                <th>Book</th>
+                                <th>User</th>
+                                <th>Note</th>
+                            </tr>
+                        </thead>
+                        <tbody id="transactionsBody"></tbody>
+                    </table>
+                </div>
+                <h2>Issues in Last 14 Days</h2>
+                <ul id="issuesTrend" class="trend-list"></ul>
+                <p id="adminStatus" class="status" aria-live="polite"></p>
+            </section>
+        </main>
+
+        <script src="/admin.js" defer></script>
+    </body>
+</html>
