@@ -1,13 +1,13 @@
 const CACHE_NAME = "wiselife-library-v2";
 const ASSETS = [
-    "/",
-    "/index.html",
-    "/admin.html",
-    "/styles.css",
-    "/api-config.js",
-    "/app.js",
-    "/admin.js",
-    "/manifest.json"
+    "./",
+    "./index.html",
+    "./admin.html",
+    "./styles.css",
+    "./api-config.js",
+    "./app.js",
+    "./admin.js",
+    "./manifest.json"
 ];
 
 self.addEventListener("install", (event) => {
@@ -32,6 +32,6 @@ self.addEventListener("fetch", (event) => {
                 }
                 return response;
             })
-            .catch(() => caches.match(event.request).then((cached) => cached || caches.match("/index.html")))
+            .catch(() => caches.match(event.request).then((cached) => cached || caches.match("./index.html")))
     );
 });
